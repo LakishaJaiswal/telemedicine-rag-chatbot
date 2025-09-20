@@ -1,0 +1,21 @@
+# Core
+numpy==1.26.4
+pandas==2.2.2
+
+# Document handling
+PyPDF2==3.0.1
+python-docx==1.1.0
+
+# Text splitting & embeddings
+langchain==0.2.16
+sentence-transformers==2.7.0
+faiss-cpu==1.8.0.post1
+
+# Offline LLM
+gpt4all==2.8.2
+
+# Database (Supabase client)
+supabase==2.3.5
+
+# Utilities
+tqdm==4.66.5
