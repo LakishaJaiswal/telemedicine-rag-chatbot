@@ -1,5 +1,5 @@
 # Ignore the large model files
-models/
+models/ Orca-Mini-v9.6-L3.2-1B_Erotiquant3.gguf
 
 # Ignore Python virtual environment
 tele_env/
