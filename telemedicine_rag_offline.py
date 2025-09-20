@@ -4,6 +4,7 @@ from pathlib import Path
 from gpt4all import GPT4All
 from sentence_transformers import SentenceTransformer
 import faiss
+import re  # <-- MODIFICATION: Import the regular expression module
 
 # ------------------ Paths ------------------
 # Using relative paths is the best practice and makes your script portable.
@@ -111,12 +112,23 @@ while True:
         print("Goodbye!")
         break
 
-    # --- NEW: Conditionally ask for temperature if fever is mentioned ---
+    # --- START OF MODIFICATION ---
+    # This entire block is the change you requested.
     temperature = "Not provided"
     if "fever" in user_input.lower():
-        temp_input = input("You mentioned fever. What is your temperature (e.g., 99.5 F or 37.5 C)?\n> ").strip()
-        if temp_input:
-            temperature = temp_input
+        # Search for a number (like 101, 99.5, 38.2) in the initial input.
+        match = re.search(r'\d+(\.\d+)?', user_input)
+        
+        if match:
+            # If a number is found, capture it as the temperature.
+            temperature = match.group(0)
+            print(f"--- Temperature auto-detected: {temperature} ---")
+        else:
+            # If "fever" is mentioned but no number is found, then ask the user.
+            temp_input = input("You mentioned fever. What is your temperature (e.g., 99.5 F or 37.5 C)?\n> ").strip()
+            if temp_input:
+                temperature = temp_input
+    # --- END OF MODIFICATION ---
     
     severity_input = input("On a scale of 1-10, how severe is your problem?\n> ").strip()
     try:
