@@ -1,0 +1,8 @@
+# Ignore the large model files
+models/
+
+# Ignore Python virtual environment
+tele_env/
+
+# Ignore Python cache files
+__pycache__/
